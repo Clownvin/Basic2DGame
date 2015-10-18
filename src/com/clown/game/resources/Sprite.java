@@ -18,4 +18,12 @@ public class Sprite extends Resource {
 	public ResourceType getResourceType() {
 		return type;
 	}
+	
+	public int getWidth() {
+		return spriteImage.getWidth();
+	}
+	
+	public int getHeight() {
+		return spriteImage.getHeight();
+	}
 }

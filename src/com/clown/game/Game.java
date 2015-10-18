@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 
 import com.clown.game.frames.Frame;
 import com.clown.game.frames.StartFrame;
+import com.clown.game.io.KeyHandler;
+import com.clown.game.resources.ResourceManager;
 
 public class Game extends JFrame {
 
@@ -24,14 +26,17 @@ public class Game extends JFrame {
 	private static BufferedImage drawingImage;
 	private static Graphics2D imageGraphics;
 	private static Frame currentFrame = null;
+	private static KeyHandler keyHandler = new KeyHandler();
 	
 	private Game() {
 		this.setUndecorated(true);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.addKeyListener(keyHandler);
 	}
 	
 	public static void main(String[] args) {
+		System.out.println(ResourceManager.getResource("mossyrock1") == null ? "Sprites not loaded" : "Sprites loaded");
 		Game game = new Game();
 		for (GraphicsDevice device : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
 			if (device.isFullScreenSupported()) {
