@@ -32,4 +32,9 @@ public abstract class Entity extends Positioned implements ResourceHolder {
 		resource = null;
 		idTag.returnTag(); //Go on tag, get back in the system.
 	}
+	
+	@Override
+	public int getLayer() {
+		return ResourceHolder.GAME_IMAGE;
+	}
 }

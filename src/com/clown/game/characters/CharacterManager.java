@@ -12,6 +12,10 @@ public final class CharacterManager {
 	private static final Player player = new Player(characterTagger.getTag());
 	private static final ArrayList<Entity> characters = new ArrayList<Entity>();
 	
+	private CharacterManager() {
+		//Never need to instantiate this.
+	}
+	
 	public static Player getPlayer() {
 		return player;
 	}

@@ -6,13 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
 import com.clown.game.frames.Frame;
 import com.clown.game.frames.StartFrame;
-import com.clown.game.io.KeyHandler;
 import com.clown.game.resources.ResourceManager;
 
 public class Game extends JFrame {
@@ -22,35 +23,48 @@ public class Game extends JFrame {
 	 */
 	private static final long serialVersionUID = 7046706410077622017L;
 	private static final Color BACKGROUND_COLOR = Color.WHITE;
+	private static final Game game = new Game();
 	
 	private static BufferedImage drawingImage;
 	private static Graphics2D imageGraphics;
 	private static Frame currentFrame = null;
-	private static KeyHandler keyHandler = new KeyHandler();
+	private static KeyAdapter keyAdapter = null;
+	private static MouseAdapter mouseAdapter = null;
 	
 	private Game() {
 		this.setUndecorated(true);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.addKeyListener(keyHandler);
 	}
 	
 	public static void main(String[] args) {
 		System.out.println(ResourceManager.getResource("mossyrock1") == null ? "Sprites not loaded" : "Sprites loaded");
-		Game game = new Game();
 		for (GraphicsDevice device : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
 			if (device.isFullScreenSupported()) {
 				device.setFullScreenWindow(game);
 			}
 		}
-		setFrame(new StartFrame());
+		setFrame(StartFrame.getFrame());
 		while (true) {
 			game.repaint();
 		}
 	}
 	
+	public static Game getGame() {
+		return game;
+	}
+	
 	public static void setFrame(Frame frame) {
+		if (currentFrame != null) {
+			game.removeKeyListener(currentFrame.getKeyAdapter());
+			game.removeMouseListener(currentFrame.getMouseAdapter());
+			currentFrame.destroy();
+		}
 		currentFrame = frame;
+		keyAdapter = frame.getKeyAdapter();
+		mouseAdapter = frame.getMouseAdapter();
+		game.addKeyListener(keyAdapter);
+		game.addMouseListener(mouseAdapter);
 	}
 	
 	//Should be the only non-static method other than the constructor and other overridden methods
