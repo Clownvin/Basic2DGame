@@ -45,6 +45,8 @@ public class Game extends JFrame {
 			}
 		}
 		setFrame(StartFrame.getFrame());
+		//Update every 16 milliseconds, not all the time.
+		//Add other game loop stuff.
 		while (true) {
 			game.repaint();
 		}

@@ -37,6 +37,7 @@ public abstract class Interactable implements ResourceHolder {
 		actionTable.get(actionID).perform();
 	}
 	
+	//For mouse clicks
 	public boolean pointInsideArea(int x, int y) {
 		return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
 	}

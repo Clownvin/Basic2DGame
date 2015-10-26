@@ -1,12 +1,12 @@
 package com.clown.game.environment;
 
+import com.clown.game.map.Positioned;
 import com.clown.game.resources.Resource;
 import com.clown.game.resources.ResourceHolder;
 import com.clown.util.IDTagSystem.IDTag;
 
 //Environment object for general objects
-public abstract class EnvironmentObject implements ResourceHolder {
-	protected int x, y;
+public abstract class EnvironmentObject extends Positioned implements ResourceHolder {
 	protected Resource resource;
 	protected final IDTag idTag;
 	

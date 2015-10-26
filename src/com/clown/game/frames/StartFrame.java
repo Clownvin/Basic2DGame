@@ -25,7 +25,16 @@ public final class StartFrame extends Frame {
 				System.out.println("Clicked me!");
 			}
 		});
+		Resource exitButtonResource = ResourceManager.getResource("exitbutton");
+		Button exitButton = new Button(startButton.getX(), startButton.getY()+startButton.getHeight(), exitButtonResource);
+		exitButton.setAction(Interactable.MOUSE_RELEASE, new Action() {
+			@Override
+			public void perform() {
+				System.exit(0);
+			}
+		});
 		interactables.add(startButton);
+		interactables.add(exitButton);
 	}
 	
 	public static StartFrame getFrame() {

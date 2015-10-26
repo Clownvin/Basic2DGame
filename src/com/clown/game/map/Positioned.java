@@ -11,7 +11,7 @@ public abstract class Positioned implements Comparable<Positioned> {
 	public int compareTo(Positioned object) {
 		int difference = object.getX() - x;
 		if (difference == 0) {
-			difference = object.getY() - y;
+			return object.getY() - y;
 		}
 		return difference;
 	}

@@ -18,9 +18,19 @@ public final class ObjectManager {
 		return null;
 	}
 	
-	public static ArrayList<ResourceHolder> getObjects() {
+	public static ArrayList<ResourceHolder> getResourceHolders() {
 		ArrayList<ResourceHolder> resourceHolders = new ArrayList<ResourceHolder>(objects.size());
 		resourceHolders.addAll(objects); // Assuming this is faster than whatever it was I was about to write
 		return resourceHolders;
+	}
+	
+	public static void despawnInArea(int x1, int y1, int x2, int y2) {
+		for (int i = 0; i < objects.size(); i++) {
+			EnvironmentObject object = objects.get(i);
+			if (object.getX() >= x1 && object.getX() <= x2 && object.getY() >= y1 && object.getY() <= y2) {
+				object.destroy();
+				objects.remove(i--);
+			}
+		}
 	}
 }

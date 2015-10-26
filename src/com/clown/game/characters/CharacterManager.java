@@ -29,7 +29,7 @@ public final class CharacterManager {
 		return null;
 	}
 	
-	public static ArrayList<ResourceHolder> getCharacters() {
+	public static ArrayList<ResourceHolder> getResourceHolders() {
 		ArrayList<ResourceHolder> resourceHolders = new ArrayList<ResourceHolder>(characters.size());
 		resourceHolders.addAll(characters); // Assuming this is faster than whatever it was I was about to write
 		return resourceHolders;
