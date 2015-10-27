@@ -2,7 +2,6 @@ package com.clown.game.characters;
 
 import java.util.ArrayList;
 
-import com.clown.game.resources.ResourceHolder;
 import com.clown.game.util.Configuration;
 import com.clown.util.IDTagSystem;
 
@@ -29,9 +28,10 @@ public final class CharacterManager {
 		return null;
 	}
 	
-	public static ArrayList<ResourceHolder> getResourceHolders() {
-		ArrayList<ResourceHolder> resourceHolders = new ArrayList<ResourceHolder>(characters.size());
-		resourceHolders.addAll(characters); // Assuming this is faster than whatever it was I was about to write
-		return resourceHolders;
+	public static ArrayList<Entity> getResourceHolders() {
+		ArrayList<Entity> listCopy = new ArrayList<Entity>(characters.size() + 1);
+		listCopy.addAll(characters);
+		listCopy.add(player);
+		return listCopy;
 	}
 }

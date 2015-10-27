@@ -13,16 +13,6 @@ public abstract class Entity extends Positioned implements ResourceHolder {
 	public Entity(IDTag idTag) {
 		this.idTag = idTag;
 	}
-
-	@Override
-	public int getX() {
-		return x;
-	}
-
-	@Override
-	public int getY() {
-		return y;
-	}
 	
 	public Resource getResource() {
 		return resource;
@@ -31,10 +21,5 @@ public abstract class Entity extends Positioned implements ResourceHolder {
 	public void destroy() {
 		resource = null;
 		idTag.returnTag(); //Go on tag, get back in the system.
-	}
-	
-	@Override
-	public int getLayer() {
-		return ResourceHolder.GAME_IMAGE;
 	}
 }

@@ -22,7 +22,7 @@ public final class StartFrame extends Frame {
 		startButton.setAction(Interactable.MOUSE_RELEASE, new Action() {
 			@Override
 			public void perform() {
-				System.out.println("Clicked me!");
+				Game.setFrame(GameFrame.getFrame());
 			}
 		});
 		Resource exitButtonResource = ResourceManager.getResource("exitbutton");

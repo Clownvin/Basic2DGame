@@ -6,8 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
@@ -28,8 +26,6 @@ public class Game extends JFrame {
 	private static BufferedImage drawingImage;
 	private static Graphics2D imageGraphics;
 	private static Frame currentFrame = null;
-	private static KeyAdapter keyAdapter = null;
-	private static MouseAdapter mouseAdapter = null;
 	
 	private Game() {
 		this.setUndecorated(true);
@@ -47,8 +43,11 @@ public class Game extends JFrame {
 		setFrame(StartFrame.getFrame());
 		//Update every 16 milliseconds, not all the time.
 		//Add other game loop stuff.
+		//Move to separate thread. No reason for this to be all it does.
 		while (true) {
+			//long start = System.nanoTime();
 			game.repaint();
+			//System.out.println("Took "+(System.nanoTime() - start)+" nanoseconds.");
 		}
 	}
 	
@@ -63,10 +62,8 @@ public class Game extends JFrame {
 			currentFrame.destroy();
 		}
 		currentFrame = frame;
-		keyAdapter = frame.getKeyAdapter();
-		mouseAdapter = frame.getMouseAdapter();
-		game.addKeyListener(keyAdapter);
-		game.addMouseListener(mouseAdapter);
+		game.addKeyListener(frame.getKeyAdapter());
+		game.addMouseListener(frame.getMouseAdapter());
 	}
 	
 	//Should be the only non-static method other than the constructor and other overridden methods
